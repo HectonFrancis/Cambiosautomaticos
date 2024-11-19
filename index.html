@@ -4,36 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tipos de Câmbio Automático</title>
-    <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            background: linear-gradient(90deg, #007BFF, #0056b3);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            margin: 0;
+        }
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 15px;
+        }
         .svg-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
-
         svg {
             width: 100%;
-            max-width: 400px;
+            max-width: 200px;
             cursor: pointer;
             transition: transform 0.3s;
         }
-
         svg:hover {
             transform: scale(1.1);
         }
-
-        .info {
-            margin-top: 15px;
-            font-size: 1rem;
+        .info-box {
+            display: none;
+            background: #f4f4f4;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Desenhos Interativos de Câmbios Automáticos</h1>
-        <p>Clique nos desenhos para explorar os detalhes de cada tipo de câmbio.</p>
+        <h1>Tipos de Câmbio Automático</h1>
+        <p>Clique em um desenho para explorar mais informações.</p>
     </header>
     <main>
+        <!-- Câmbio CVT -->
         <section>
             <h2>Câmbio CVT</h2>
             <div class="svg-container" onclick="showInfo('cvt')">
@@ -43,9 +66,13 @@
                     <line x1="100" y1="40" x2="100" y2="160" stroke="white" stroke-width="6" />
                     <text x="50%" y="50%" fill="white" font-size="20" font-family="Arial" text-anchor="middle" dy=".3em">CVT</text>
                 </svg>
-                <p class="info" id="info-cvt">Clique no desenho para saber mais sobre o funcionamento contínuo do CVT.</p>
+            </div>
+            <div id="info-cvt" class="info-box">
+                <p>O CVT (Transmissão Continuamente Variável) utiliza polias e correias ajustáveis para oferecer um funcionamento suave e eficiente.</p>
             </div>
         </section>
+
+        <!-- Câmbio Automático Convencional -->
         <section>
             <h2>Câmbio Automático Convencional</h2>
             <div class="svg-container" onclick="showInfo('convencional')">
@@ -55,9 +82,13 @@
                     <line x1="100" y1="50" x2="100" y2="150" stroke="white" stroke-width="6" />
                     <text x="50%" y="50%" fill="white" font-size="20" font-family="Arial" text-anchor="middle" dy="3em">Auto</text>
                 </svg>
-                <p class="info" id="info-convencional">Clique para detalhes sobre o câmbio automático convencional.</p>
+            </div>
+            <div id="info-convencional" class="info-box">
+                <p>O câmbio automático convencional utiliza um conversor de torque, oferecendo praticidade e conforto ao dirigir.</p>
             </div>
         </section>
+
+        <!-- Câmbio de Dupla Embreagem -->
         <section>
             <h2>Câmbio de Dupla Embreagem</h2>
             <div class="svg-container" onclick="showInfo('dupla')">
@@ -67,21 +98,22 @@
                     <line x1="100" y1="70" x2="100" y2="130" stroke="white" stroke-width="6" />
                     <text x="50%" y="50%" fill="white" font-size="20" font-family="Arial" text-anchor="middle" dy=".3em">DCT</text>
                 </svg>
-                <p class="info" id="info-dupla">Explore o desenho do câmbio de dupla embreagem.</p>
+            </div>
+            <div id="info-dupla" class="info-box">
+                <p>O câmbio de dupla embreagem alterna entre marchas pares e ímpares com eficiência e rapidez.</p>
             </div>
         </section>
     </main>
-    <footer>
-        <p>Site interativo desenvolvido para aprender sobre câmbios automáticos.</p>
-    </footer>
     <script>
         function showInfo(type) {
-            const messages = {
-                cvt: "O CVT (Transmissão Continuamente Variável) utiliza polias e correias ajustáveis para um funcionamento suave.",
-                convencional: "O câmbio automático convencional usa um conversor de torque para facilitar a troca de marchas.",
-                dupla: "O câmbio de dupla embreagem alterna entre marchas pares e ímpares com rapidez impressionante."
-            };
-            alert(messages[type]);
+            // Oculta todas as informações
+            document.querySelectorAll('.info-box').forEach(box => box.style.display = 'none');
+
+            // Exibe a seção correspondente
+            const infoBox = document.getElementById(`info-${type}`);
+            if (infoBox) {
+                infoBox.style.display = 'block';
+            }
         }
     </script>
 </body>
